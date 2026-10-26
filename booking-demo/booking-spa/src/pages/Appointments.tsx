@@ -1,20 +1,42 @@
 import { useEffect, useState } from "react";
-import { getBookings } from "../services/api";
-import type { Booking } from "../types/Booking";
+import { getAppointments, createAppointment } from "../services/api";
+import type { Appointment } from "../types/Appointment";
 
 export default function Appointments() {
-  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [error, setError] = useState<string | null>(null);
 
+  const [customerName, setCustomerName] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (!customerName.trim()) {
+      setError("Customer name is required");
+      return;
+    }
+
+    const newAppt = {
+      customerName,
+      startTime: new Date(startTime).toISOString().slice(0, 19),
+      endTime: new Date(endTime).toISOString().slice(0, 19)
+    };
+    
+    const created = await createAppointment(newAppt);
+    setAppointments(prev => [...prev, created]);
+  }
+
   useEffect(() => {
-    async function fetchBookings() {
+    async function fetchAppointments() {
       try {
-        setBookings(await getBookings());
+        setAppointments(await getAppointments());
       } catch {
         setError("Failed to load appointments.");
       }
     }
-    fetchBookings();
+    fetchAppointments();
   }, []);
 
   return (
@@ -22,10 +44,32 @@ export default function Appointments() {
       <h1>Appointments</h1>
       {error && <p>{error}</p>}
       <ul>
-        {bookings.map((booking: Booking) => (
-          <li key={booking.id}>{booking.customerName}</li>
+        {appointments.map((appt: Appointment) => (
+          <li key={appt.id}>{appt.customerName}</li>
         ))}
       </ul>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={customerName}
+          onChange={e => setCustomerName(e.target.value)}
+          placeholder="Customer name"
+        />
+
+        <input
+          type="datetime-local"
+          value={startTime}
+          onChange={e => setStartTime(e.target.value)}
+        />
+
+        <input
+          type="datetime-local"
+          value={endTime}
+          onChange={e => setEndTime(e.target.value)}
+        />
+
+        <button type="submit">Create</button>
+      </form>
+This keeps the page 
     </div>
   );
 }

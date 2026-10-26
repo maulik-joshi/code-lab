@@ -7,3 +7,9 @@ public record Appointment
     public required DateTime StartTime { get; init; }
     public required DateTime EndTime { get; init; }
 }
+
+public record AppointmentCreateRequest(
+    string CustomerName,
+    DateTime StartTime,
+    DateTime EndTime
+);

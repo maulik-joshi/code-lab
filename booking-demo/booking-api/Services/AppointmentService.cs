@@ -17,9 +17,17 @@ public class AppointmentService
 
     public IEnumerable<Appointment> GetAll() => _items;
 
-    public Appointment Add(Appointment appt)
+    public Appointment Add(AppointmentCreateRequest apptCreateRequest)
     {
-        _items.Add(appt);
-        return appt;
+        var created = new Appointment
+        {
+            Id = Guid.NewGuid(),
+            CustomerName = apptCreateRequest.CustomerName,
+            StartTime = apptCreateRequest.StartTime,
+            EndTime = apptCreateRequest.EndTime
+        };
+
+        _items.Add(created);
+        return created;
     }
 }
