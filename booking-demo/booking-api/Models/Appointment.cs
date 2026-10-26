@@ -1,8 +1,9 @@
 namespace BookingApi.Models;
 
-public record Appointment(
-    Guid Id,
-    string CustomerName,
-    DateTime StartTime,
-    DateTime EndTime
-);
+public record Appointment
+{
+    public required Guid Id { get; init; }
+    public required string? CustomerName { get; init; }
+    public required DateTime StartTime { get; init; }
+    public required DateTime EndTime { get; init; }
+}

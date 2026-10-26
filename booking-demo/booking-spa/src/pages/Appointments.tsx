@@ -4,11 +4,15 @@ import type { Booking } from "../types/Booking";
 
 export default function Appointments() {
   const [bookings, setBookings] = useState<Booking[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchBookings() {
-      const data = await getBookings();
-      setBookings(data);
+      try {
+        setBookings(await getBookings());
+      } catch {
+        setError("Failed to load appointments.");
+      }
     }
     fetchBookings();
   }, []);
@@ -16,6 +20,7 @@ export default function Appointments() {
   return (
     <div>
       <h1>Appointments</h1>
+      {error && <p>{error}</p>}
       <ul>
         {bookings.map((booking: Booking) => (
           <li key={booking.id}>{booking.customerName}</li>

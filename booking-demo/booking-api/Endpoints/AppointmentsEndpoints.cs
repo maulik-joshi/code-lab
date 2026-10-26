@@ -7,10 +7,10 @@ public static class AppointmentsEndpoints
 {
     public static void MapAppointments(this IEndpointRouteBuilder routes)
     {
-        routes.MapGet("/appointments", (AppointmentService svc) =>
+        routes.MapGet("api/appointments", (AppointmentService svc) =>
             svc.GetAll());
 
-        routes.MapPost("/appointments", (Appointment appt, AppointmentService svc) =>
+        routes.MapPost("api/appointments", (Appointment appt, AppointmentService svc) =>
             svc.Add(appt));
     }
 }
