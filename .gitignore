@@ -12,6 +12,11 @@ desktop.ini
 *.sln
 *.swp
 
+# Package manager lockfiles
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
 # --- Dependencies & Packages ---
 node_modules/
 bower_components/
