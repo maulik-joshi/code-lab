@@ -1,0 +1,10 @@
+export { default as Rep1 } from "./Rep1";
+export { default as Rep2 } from "./Rep2";
+export { default as Rep3 } from "./Rep3";
+export { default as Rep4 } from "./Rep4";
+export { default as Rep5 } from "./Rep5";
+export { default as Rep6 } from "./Rep6";
+export { default as Rep7 } from "./Rep7";
+export { default as Rep8 } from "./Rep8";
+export { default as Rep9 } from "./Rep9";
+export { default as Rep10 } from "./Rep10";

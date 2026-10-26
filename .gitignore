@@ -1,0 +1,63 @@
+# --- Operating System Files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Common IDEs & Editors ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# --- Dependencies & Packages ---
+node_modules/
+bower_components/
+jspm_packages/
+
+# --- Logs and Runtime Data ---
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# --- Environment Variables & Secrets ---
+.env
+.env.local
+.env.production
+*.pem
+*.key
+
+# --- Build & Output Folders ---
+dist/
+build/
+out/
+
+# --- Dev Container ---
+# Exclude all files inside the .devcontainer directory by default
+.devcontainer/*
+
+# Allow only the essential, required configuration files
+!.devcontainer/devcontainer.json
+!.devcontainer/Dockerfile
+!.devcontainer/docker-compose.yml
+
+# --- .NET / C# ---
+bin/
+obj/
+*.AssemblyInfo.cs
+AssemblyInfo.cs
+*.AssemblyAttributes.cs
+*.g.cs
+*.g.props
+*.g.targets
+*.GlobalUsings.g.cs
+*.GeneratedMSBuildEditorConfig.editorconfig
+*.AssemblyInfoInputs.cache
+*.assets.cache
+*.AssemblyReference.cache
+*.user
+.vs/
